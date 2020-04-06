@@ -6,6 +6,11 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+// vant全部引入
+import Vant from 'vant';
+import 'vant/lib/index.css';
+Vue.use(Vant);
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
