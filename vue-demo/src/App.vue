@@ -2,7 +2,7 @@
   <div id="app">
     <!-- <img src="./assets/logo.png"> -->
     <router-view name="header"></router-view>
-    <router-view></router-view>
+    <router-view class="app-content"></router-view>
   </div>
 </template>
 
@@ -13,5 +13,7 @@ export default {
 </script>
 
 <style>
-
+.app-content{
+  margin-top: 50px;
+}
 </style>

@@ -29,11 +29,13 @@
 
  <style scoped>
  .van-tabbar--fixed{
-     height: 80px;
-     background: rgb(9, 24, 58);
+     position: fixed;
+     top:0;
+     height: 50px;
+     background: #09183a;
  }
  .van-tabbar-item{
-     font-size: 24px;
+     font-size: 16px;
  }
  .van-tabbar-item--active{
      background: #0A255E;
