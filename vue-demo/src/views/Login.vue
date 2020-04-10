@@ -18,21 +18,24 @@
                 </div>
                 <div class="user-name" v-if="!this.islog">
                     <span >身份：</span>
-                    <input type="text" placeholder="请选择身份...">
+                    <select name="user" class="input" v-model="value">
+                        <option value="0">普通用户</option>
+                        <option value="1">管理员</option>
+                    </select>
                 </div>
                 <div class="user-name">
                     <span>用户名：</span>
-                    <input type="text" placeholder="请输入用户名...">
+                    <input type="text" placeholder="请输入用户名..." v-model="userinfo.username">
                 </div>
                 <div class="user-password">
                     <span>登录密码：</span>
-                    <input type="text" placeholder="请输入密码...">
+                    <input type="text" placeholder="请输入密码..." v-model="userinfo.password">
                 </div>
                 <div class="user-check">
                     <span>{{this.islog?'验证码：':'重复密码：'}}</span>
-                    <input type="text" :placeholder=" this.islog ? '验证码...':'重复密码...'">
+                    <input type="text" :placeholder=" this.islog ? '验证码...':'重复密码...'" v-model="userinfo.recheck">
                 </div>
-                <div class="user-btn">
+                <div class="user-btn" @click="loginRegester(islog)">
                     {{this.islog?'登录':'注册'}}
                 </div>
             </div>
@@ -45,8 +48,13 @@
 export default {
     data(){
         return{
-           islog: true,//是否登录or注册
-           
+            islog: true,//是否登录or注册
+            value:0,
+            userinfo:{
+                username:this.$store.state.username,
+                password:'',
+                recheck:'',
+            },
         }
     },
     methods:{
@@ -62,7 +70,18 @@ export default {
                return '../../static/image/bk-zhuce-1.png';
            }
         },
-
+        //登陆或者注册
+        loginRegester(flag){
+            if(flag){
+                console.log('登录');
+            }else{
+                console.log('zhuce');
+                //注册时候将信息提交到api的数组中
+                // this.rq.post('../../Mock/UserInfo.json',{userinfo:this.userinfo}).then(res=>{
+                //     console.log(res)
+                // })
+            }
+        }
     }
 }
 </script>
@@ -149,7 +168,7 @@ export default {
     .user-name,.user-password,.user-check{
         width: 456px;
         height: 40px;
-        margin-top: 25px;
+        margin-top: 20px;
         span{
             width: 90px;
             font-size: 14px;
@@ -189,6 +208,10 @@ export default {
             -moz-box-shadow:inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
             box-shadow:inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(82,168,236,.6);
         }
+    }
+    .input{
+        width: 250px;
+        height: 30px;
     }
 }
 </style>
